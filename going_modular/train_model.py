@@ -57,6 +57,7 @@ def train(model,
                'test_acc':[]}
   start_train = timer()
   for epoch in tqdm(range(epochs)):
+    print()
     print(f'Epoch {epoch+1} -------------')
     train_loss, train_acc = train_step(model = model,
                                        train_dataloader = train_dataloader,
@@ -75,5 +76,5 @@ def train(model,
     results['test_acc'].append(test_acc)
   end_train = timer()
   train_time = end_train - start_train
-  print(f'The model was training for {train_time // 60} min and {train_time % 60} sec.')
+  print(f'The model was training for {train_time // 60} min and {train_time % 60:.4f} sec.')
   return results
