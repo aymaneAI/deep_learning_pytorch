@@ -44,12 +44,12 @@ def test_step(model,
     return test_loss, test_acc
 
 def train(model,
-                train_dataloader,
-                test_dataloader,
-                optimizer,
-                loss_fn,
-                epochs,
-                device):
+          train_dataloader,
+          test_dataloader,
+          optimizer,
+          loss_fn,
+          epochs,
+          device):
 
   results = {'train_loss':[],
                'train_acc':[],
