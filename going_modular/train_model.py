@@ -16,7 +16,7 @@ def train_step(model,
     x_logits = model(X)
     x_preds = torch.argmax(x_logits, dim=1)
     loss = loss_fn(x_logits, y)
-    train_loss += loss
+    train_loss += loss.item()
     train_acc += (((y == x_preds).sum().item())/len(x_preds)) * 100
     optimizer.zero_grad()
     loss.backward()
@@ -70,10 +70,10 @@ def train(model,
                                     device = device)
     print(f'train_loss : {train_loss:.4f} | train_acc : {train_acc:.2f}% | test_loss : {test_loss:.4f} | test_acc : {test_acc:.2f}%')
     
-    results['train_loss'].append(train_loss.cpu().detach().numpy() )
-    results['test_loss'].append(test_loss.cpu().detach().numpy() )
-    results['train_acc'].append(train_acc.cpu().detach().numpy() )
-    results['test_acc'].append(test_acc.cpu().detach().numpy() )
+    results['train_loss'].append(train_loss)
+    results['test_loss'].append(test_loss)
+    results['train_acc'].append(train_acc)
+    results['test_acc'].append(test_acc)
   end_train = timer()
   train_time = end_train - start_train
   print(f'The model was training for {train_time // 60} min and {train_time % 60:.4f} sec.')
