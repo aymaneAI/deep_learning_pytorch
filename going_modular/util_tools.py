@@ -68,14 +68,14 @@ def download_model(loaded_model,
   loaded_model = loaded_model.to(device)
   return loaded_model
 
-def plot_curves(model_results, epochs):
-  n_epochs = range(epochs)
+def plot_curves(model_results):
   train_loss = model_results['train_loss']
   train_acc = model_results['train_acc']
   test_loss = model_results['test_loss']
   test_acc = model_results['test_acc']
+  n_epochs = range(len(train_loss))
 
-  plt.figure(figsize=(10,6))
+  plt.figure(figsize=(12,5))
   # Curve 1
   plt.subplot(1,2,1)
   plt.plot(n_epochs, train_loss, label = 'train_loss')
